@@ -20,8 +20,8 @@ class UserFixtures extends Fixture
     {
         $manon = new User();
         $manon->setEmail("manon.jeuland@gmail.com");
-        $manon->setFirstName("Manon");
-        $manon->setLastName("Jeuland");
+        $manon->setFirstName("manon");
+        $manon->setLastName("jeuland");
         $manon->setRoles(["ROLE_ADMIN"]);
         $password = $this->encoder->encodePassword($manon, "admin");
         $manon->setPassword($password);
@@ -30,8 +30,8 @@ class UserFixtures extends Fixture
 
         $marie = new User();
         $marie->setEmail("marie.hamsany@gmail.com");
-        $marie->setFirstName("Marie");
-        $marie->setLastName("Hamsany");
+        $marie->setFirstName("marie");
+        $marie->setLastName("hamsany");
         $password = $this->encoder->encodePassword($marie, "marie");
         $marie->setPassword($password);
         $manager->persist($marie);
@@ -39,8 +39,8 @@ class UserFixtures extends Fixture
 
         $pierre = new User();
         $pierre->setEmail("pierre.jehan@gmail.com");
-        $pierre->setFirstName("Pierre");
-        $pierre->setLastName("Jehan");
+        $pierre->setFirstName("pierre");
+        $pierre->setLastName("jehan");
         $password = $this->encoder->encodePassword($pierre, "pierre");
         $pierre->setPassword($password);
         $manager->persist($pierre);

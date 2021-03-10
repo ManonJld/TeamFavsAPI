@@ -165,9 +165,10 @@ class User implements UserInterface
         return $this->firstName;
     }
 
+//    ucfirst permet de mettre automatiquement la première lettre en majuscule
     public function setFirstName(string $firstName): self
     {
-        $this->firstName = $firstName;
+        $this->firstName = ucfirst($firstName);
 
         return $this;
     }
@@ -179,7 +180,7 @@ class User implements UserInterface
 
     public function setLastName(string $lastName): self
     {
-        $this->lastName = $lastName;
+        $this->lastName = ucfirst($lastName);
 
         return $this;
     }
