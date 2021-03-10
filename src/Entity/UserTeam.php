@@ -24,15 +24,16 @@ class UserTeam
     private $team;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $userRole;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userTeams")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=RoleUserTeam::class, inversedBy="userTeams")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $roleUserTeam;
 
     public function getId(): ?int
     {
@@ -51,18 +52,6 @@ class UserTeam
         return $this;
     }
 
-    public function getUserRole(): ?string
-    {
-        return $this->userRole;
-    }
-
-    public function setUserRole(string $userRole): self
-    {
-        $this->userRole = $userRole;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -71,6 +60,18 @@ class UserTeam
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getRoleUserTeam(): ?RoleUserTeam
+    {
+        return $this->roleUserTeam;
+    }
+
+    public function setRoleUserTeam(?RoleUserTeam $roleUserTeam): self
+    {
+        $this->roleUserTeam = $roleUserTeam;
 
         return $this;
     }

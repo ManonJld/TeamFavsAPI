@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=BookmarkRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Bookmark
 {
@@ -141,5 +142,13 @@ class Bookmark
         $this->user = $user;
 
         return $this;
+    }
+//    permet de créer automatiquement la date
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime());
     }
 }

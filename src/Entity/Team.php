@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=TeamRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Team
 {
@@ -150,5 +151,13 @@ class Team
         }
 
         return $this;
+    }
+//    permet de créer automatiquement la date
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime());
     }
 }
