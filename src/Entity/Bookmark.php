@@ -151,4 +151,9 @@ class Bookmark
     {
         $this->setCreatedAt(new \DateTime());
     }
+
+    public function __toString()//permet de définir une sortie en chaine de caractère si la classe est appelé directement, notamment pour les listes déroulante des formulaires
+    {
+        return $this->getName();
+    }
 }
