@@ -10,7 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RoleUserTeamRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={
+ *          "order": {"role":"asc"}
+ *     }
+ * )
  */
 class RoleUserTeam
 {

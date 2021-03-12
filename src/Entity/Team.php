@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -45,6 +46,7 @@ class Team
 
     /**
      * @ORM\OneToMany(targetEntity=Category::class, mappedBy="team", orphanRemoval=true)
+     * @ApiSubresource()
      */
     private $categories;
 
