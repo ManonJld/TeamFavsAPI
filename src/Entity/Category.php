@@ -17,7 +17,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     attributes={
  *          "order":{"name":"asc"}
  *     },
- *     normalizationContext={"groups"={"category_read"}}
+ *     normalizationContext={"groups"={"category_read"}},
+ *     subresourceOperations={
+ *          "api_teams_categories_get_subresource"={
+ *              "normalization_context"={"groups"={"categories_subresource"}}
+ *               }
+ *     }
  * )
  */
 class Category
@@ -26,24 +31,25 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"categories_subresource"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_read"})
+     * @Groups({"category_read", "categories_subresource"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"category_read"})
+     * @Groups({"category_read", "categories_subresource"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"category_read"})
+     * @Groups({"category_read", "categories_subresource"})
      */
     private $description;
 
@@ -56,6 +62,7 @@ class Category
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="categories")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"categories_subresource"})
      */
     private $user;
 

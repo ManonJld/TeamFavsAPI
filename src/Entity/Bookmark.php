@@ -5,11 +5,21 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\BookmarkRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=BookmarkRepository::class)
  * @ORM\HasLifecycleCallbacks()// permet de gérer le created at à la date du jour
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={
+ *          "order":{"name":"asc"}
+ *     },
+ *     subresourceOperations={
+ *          "api_categories_bookmarks_get_subresource"={
+ *              "normalization_context"={"groups"={"bookmarks_subresource"}}
+ *               }
+ *     }
+ * )
  */
 class Bookmark
 {
@@ -17,31 +27,37 @@ class Bookmark
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"bookmarks_subresource"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"bookmarks_subresource"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"bookmarks_subresource"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"bookmarks_subresource"})
      */
     private $url;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"bookmarks_subresource"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"bookmarks_subresource"})
      */
     private $image;
 
@@ -54,6 +70,7 @@ class Bookmark
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookmarks")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"bookmarks_subresource"})
      */
     private $user;
 

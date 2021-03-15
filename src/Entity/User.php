@@ -324,6 +324,9 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @Groups({"bookmarks_subresource", "categories_subresource"})
+     */
     public function getShortName(): string
     {
         return $this->getFirstName() . " " . $this->getLastName();
