@@ -12,7 +12,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ApiResource(normalizationContext={"groups"={"users_read"}})
+ * @ApiResource(
+ *     normalizationContext={"groups"={"users_read"}}
+ * )
  */
 class User implements UserInterface
 {
@@ -20,6 +22,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"userTeam_read"})
      */
     private $id;
 
@@ -65,6 +68,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=UserTeam::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"users_read"})
      */
     private $userTeams;
 
@@ -325,7 +329,7 @@ class User implements UserInterface
     }
 
     /**
-     * @Groups({"bookmarks_subresource", "categories_subresource"})
+     * @Groups({"bookmarks_subresource", "categories_subresource", "users_read", "teams_read", "userTeam_read"})
      */
     public function getShortName(): string
     {

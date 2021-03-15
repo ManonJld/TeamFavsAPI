@@ -8,11 +8,25 @@ use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=TeamRepository::class)
  * @ORM\HasLifecycleCallbacks()// permet de gérer le created at à la date du jour
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"teams_read"}},
+ *     collectionOperations={
+ *          "GET"={
+ *              "method"="get",
+ *              "openapi_context"={
+ *                  "summary"="Récupère la liste des teams, leurs utilisateurs et leur role",
+ *                  "description"="Récupère la liste des teams, leurs utilisateurs et leur role"
+ *          }},
+ *          "POST"={
+ *              "method"="post"
+ *     }
+ *     }
+ * )
  */
 class Team
 {
@@ -20,16 +34,19 @@ class Team
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"users_read", "teams_read", "userTeam_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users_read", "teams_read", "userTeam_read"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"teams_read"})
      */
     private $createdAt;
 
@@ -41,6 +58,7 @@ class Team
 
     /**
      * @ORM\OneToMany(targetEntity=UserTeam::class, mappedBy="team", orphanRemoval=true)
+     * @Groups({"teams_read"})
      */
     private $userTeams;
 

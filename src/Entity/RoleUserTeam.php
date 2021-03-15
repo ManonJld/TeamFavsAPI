@@ -7,12 +7,20 @@ use App\Repository\RoleUserTeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RoleUserTeamRepository::class)
  * @ApiResource(
- *     collectionOperations={"get"},
- *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"role_read"}},
+ *     collectionOperations={"GET"={
+ *          "method"="get",
+ *          "openapi_context"={
+ *              "summary"="Récupère les rôles",
+ *              "description"="Récupère la liste des noms de rôle"
+ *              }
+ *          }
+ *     },
  *     attributes={
  *          "order": {"role":"asc"}
  *     }
@@ -29,6 +37,7 @@ class RoleUserTeam
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"teams_read", "users_read", "role_read", "userTeam_read"})
      */
     private $role;
 

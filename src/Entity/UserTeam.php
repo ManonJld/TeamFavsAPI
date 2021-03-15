@@ -5,11 +5,15 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserTeamRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserTeamRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"userTeam_read"}},
+ * )
  */
+
 class UserTeam
 {
     /**
@@ -22,18 +26,21 @@ class UserTeam
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="userTeams")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"users_read", "userTeam_read"})
      */
     private $team;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userTeams")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"teams_read", "userTeam_read"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=RoleUserTeam::class, inversedBy="userTeams")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"teams_read", "users_read", "userTeam_read"})
      */
     private $roleUserTeam;
 
