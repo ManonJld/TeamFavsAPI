@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,6 +18,7 @@ use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
  * @ApiResource(
  *     normalizationContext={"groups"={"users_read"}}
  * )
+ * @UniqueEntity("email", message="Un utilisateur ayant cet email existe déjà")
  */
 class User implements UserInterface
 {
@@ -48,9 +50,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @SecurityAssert\UserPassword(
-     *     message = "Le mot de passe n'est pas reconnu"
-     * )
+
      * @Assert\NotBlank(
      *     message = "Le mot de passe doit être renseigné"
      * )
@@ -70,7 +70,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read"})
      * @Assert\NotBlank(
-     *     message="Veuillez entre vore nom de famille"
+     *     message="Veuillez entre votre nom de famille"
      * )
      */
     private $lastName;
@@ -353,7 +353,7 @@ class User implements UserInterface
      */
     public function getShortName(): string
     {
-        return $this->getFirstName() . " " . $this->getLastName();
+        return $this->getFirstName() . " " .substr($this->getLastName(), 0, 1) . ".";
     }
 
     public function __toString()//permet de définir une sortie en chaine de caractère si la classe est appelé directement, notamment pour les listes déroulante des formulaires
