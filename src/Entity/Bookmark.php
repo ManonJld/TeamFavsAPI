@@ -35,7 +35,9 @@ class Bookmark
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"bookmarks_subresource"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *     message="Veuillez entrer un nom pour le favoris"
+     * )
      */
     private $name;
 
@@ -48,8 +50,12 @@ class Bookmark
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"bookmarks_subresource"})
-     * @Assert\NotBlank
-     * @Assert\Url
+     * @Assert\NotBlank(
+     *     message="Veuillez entrer une URL"
+     * )
+     * @Assert\Url(
+     *     message="Veuillez entrer une URL valide"
+     * )
      */
     private $url;
 

@@ -34,7 +34,9 @@ class User implements UserInterface
      * @Assert\Email(
      *     message = "L'email saisi n'est pas un email valide."
      * )
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *     message = "Une adresse email doit être renseignée"
+     * )
      */
     private $email;
 
@@ -49,21 +51,27 @@ class User implements UserInterface
      * @SecurityAssert\UserPassword(
      *     message = "Le mot de passe n'est pas reconnu"
      * )
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *     message = "Le mot de passe doit être renseigné"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *     message="Veuillez entrez votre prénom"
+     * )
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *     message="Veuillez entre vore nom de famille"
+     * )
      */
     private $lastName;
 

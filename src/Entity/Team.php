@@ -42,7 +42,9 @@ class Team
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read", "teams_read", "userTeam_read"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *     message = "Veuillez donner un nom à votre Team"
+     * )
      */
     private $name;
 

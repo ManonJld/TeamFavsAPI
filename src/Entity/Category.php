@@ -39,7 +39,9 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"category_read", "categories_subresource"})
-     * @Assert\NotBlank
+     * @Assert\NotBlank(
+     *     message="Veuillez entrer un nom pour la catégorie"
+     * )
      */
     private $name;
 
