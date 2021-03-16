@@ -60,6 +60,9 @@ class Category
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="categories")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(
+     *     message="Veuillez renseigner une team"
+     * )
      */
     private $team;
 
@@ -67,6 +70,9 @@ class Category
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="categories")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"categories_subresource"})
+     * @Assert\NotBlank(
+     *     message="Veuillez renseigner un utilisteur"
+     * )
      */
     private $user;
 

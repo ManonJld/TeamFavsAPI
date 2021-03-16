@@ -57,6 +57,9 @@ class Team
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="teamsCreated")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(
+     *     message="Veuillez renseigner un utilisateur"
+     * )
      */
     private $user;
 
