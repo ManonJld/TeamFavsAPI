@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\BookmarkRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BookmarkRepository::class)
@@ -34,6 +35,7 @@ class Bookmark
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"bookmarks_subresource"})
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -46,6 +48,8 @@ class Bookmark
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"bookmarks_subresource"})
+     * @Assert\NotBlank
+     * @Assert\Url
      */
     private $url;
 
