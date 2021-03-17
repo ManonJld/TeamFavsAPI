@@ -19,6 +19,15 @@ class RoleUserTeamRepository extends ServiceEntityRepository
         parent::__construct($registry, RoleUserTeam::class);
     }
 
+    public function findOneByRoleAdmin($role): ?RoleUserTeam
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.role = :role')
+            ->setParameter('role', $role);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
     // /**
     //  * @return RoleUserTeam[] Returns an array of RoleUserTeam objects
     //  */
