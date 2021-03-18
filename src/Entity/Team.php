@@ -75,10 +75,20 @@ class Team
      */
     private $categories;
 
+    //la ligne this->id est ajoutée pour gérer le cascade persist
     public function __construct()
     {
+        $this->id = Team::class;
         $this->userTeams = new ArrayCollection();
         $this->categories = new ArrayCollection();
+    }
+
+    //Cette fonction permet de pouvoir créer une entité UserTeam, à la création d'une entité Team. Il faut en plus cascade persist dans l'entité UserTeam
+    public function userTeam()
+    {
+        $newUserTeam = new UserTeam();
+        $newUserTeam->setTeam($this);
+        $this->userTeams->add($newUserTeam);
     }
 
     public function getId(): ?int

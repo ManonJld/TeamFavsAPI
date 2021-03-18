@@ -17,13 +17,13 @@ class TeamByUserSubscriber implements EventSubscriberInterface
 {
     private $security;
     private $repository;
-    private $repositoryT;
+    private $entityManager;
 
-    public function __construct(Security $security, RoleUserTeamRepository $repository, TeamRepository $repositoryT)
+    public function __construct(Security $security, RoleUserTeamRepository $repository, EntityManagerInterface $entityManager)
     {
         $this->security = $security;
         $this->repository = $repository;
-        $this->repositoryT = $repositoryT;
+        $this->entityManager = $entityManager;
     }
 
     public static function getSubscribedEvents()
@@ -44,7 +44,22 @@ class TeamByUserSubscriber implements EventSubscriberInterface
             $user = $this->security->getUser();
             //assigne l'utilisateur à la catégorie qu'on est en train de créer
             $team->setUser($user);
+
+            //récupère le role admin
+            $admin = $this->repository->findOneByRoleAdmin('Admin');
+
+            //cree une instance de l'entité UserTeam et attribue le role admin pour l'utilisateur créateur connecté
+            //Il faut qu'il y ait un cascade persist + quelques infos dans mes 2 entité concernées pour que ça fonctionne
+            $userTeam = new UserTeam();
+            $userTeam->setUser($user);
+            $userTeam->setTeam($team);
+            $userTeam->setRoleUserTeam($admin);
+            $manager = $this->entityManager;
+            $manager->persist($userTeam);
+            $manager->flush();
         }
+
+
     }
 
 //    public function setInstanceUserTeam(ViewEvent $event, EntityManagerInterface $entityManager)
