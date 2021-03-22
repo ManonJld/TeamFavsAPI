@@ -4,12 +4,21 @@ namespace App\Events;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
 
-//class non utilisée. Si je veux l'utiliser, décommenter les lignes dans services.yaml
+//class appelée dans services.yaml, permet d'enrichir les données du token
 class JwtCreatedSubscriber
 {
     public function updateJwtData(JWTCreatedEvent $event)
     {
+        //récupérer l'utilisateur
+        $user = $event->getUser();
+        //enrichir les datas
+        $data = $event->getData();
+        $data['firstname'] = $user->getFirstName();
+        $data['lastname'] = $user->getLastName();
+        $data['id'] = $user->getId();
 
-        dd($event->getData());
+        //renvoie le tableau enrichi
+        $event->setData($data);
+//        dd($event->getData());
     }
 }
