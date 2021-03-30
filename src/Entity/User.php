@@ -26,7 +26,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"userTeam_read"})
+     * @Groups({"userTeam_read", "bookmarks_subresource", "bookmark_read"})
      */
     private $id;
 
@@ -349,7 +349,7 @@ class User implements UserInterface
     }
 
     /**
-     * @Groups({"bookmarks_subresource", "categories_subresource", "users_read", "teams_read", "userTeam_read"})
+     * @Groups({"bookmarks_subresource", "categories_subresource", "users_read", "teams_read", "userTeam_read", "bookmark_read"})
      */
     public function getShortName(): string
     {

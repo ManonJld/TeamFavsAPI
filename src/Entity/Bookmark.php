@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     attributes={
  *          "order":{"name":"asc"}
  *     },
+ *     normalizationContext={"groups"={"bookmark_read"}},
  *     subresourceOperations={
  *          "api_categories_bookmarks_get_subresource"={
  *              "normalization_context"={"groups"={"bookmarks_subresource"}}
@@ -28,13 +29,13 @@ class Bookmark
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"bookmarks_subresource"})
+     * @Groups({"bookmarks_subresource", "bookmark_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"bookmarks_subresource"})
+     * @Groups({"bookmarks_subresource", "bookmark_read"})
      * @Assert\NotBlank(
      *     message="Veuillez entrer un nom pour le favoris"
      * )
@@ -43,13 +44,13 @@ class Bookmark
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"bookmarks_subresource"})
+     * @Groups({"bookmarks_subresource", "bookmark_read"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"bookmarks_subresource"})
+     * @Groups({"bookmarks_subresource", "bookmark_read"})
      * @Assert\NotBlank(
      *     message="Veuillez entrer une URL"
      * )
@@ -61,13 +62,13 @@ class Bookmark
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"bookmarks_subresource"})
+     * @Groups({"bookmarks_subresource", "bookmark_read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"bookmarks_subresource"})
+     * @Groups({"bookmarks_subresource", "bookmark_read"})
      */
     private $image;
 
