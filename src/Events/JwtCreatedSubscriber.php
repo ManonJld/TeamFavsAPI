@@ -16,6 +16,7 @@ class JwtCreatedSubscriber
         $data['firstname'] = $user->getFirstName();
         $data['lastname'] = $user->getLastName();
         $data['id'] = $user->getId();
+        $data['picture'] = $user->getProfilPicture();
 
         //renvoie le tableau enrichi
         $event->setData($data);
