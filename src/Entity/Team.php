@@ -71,7 +71,8 @@ class Team
 
     /**
      * @ORM\OneToMany(targetEntity=Category::class, mappedBy="team", orphanRemoval=true)
-     * @ApiSubresource(maxDepth=1)
+     * @ApiSubresource(maxDepth=2)
+     * @Groups("teams_read")
      */
     private $categories;
 

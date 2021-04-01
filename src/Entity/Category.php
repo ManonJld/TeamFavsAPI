@@ -78,7 +78,8 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Bookmark::class, mappedBy="category")
-     * @ApiSubresource()
+     * @ApiSubresource(maxDepth=1)
+     * @Groups("teams_read")
      */
     private $bookmarks;
 

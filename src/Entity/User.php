@@ -349,7 +349,7 @@ class User implements UserInterface
     }
 
     /**
-     * @Groups({"bookmarks_subresource", "categories_subresource", "users_read", "teams_read", "userTeam_read", "bookmark_read"})
+     * @Groups({"bookmarks_subresource", "categories_subresource", "users_read", "teams_read", "userTeam_read", "bookmark_read", "teams_read"})
      */
     public function getShortName(): string
     {

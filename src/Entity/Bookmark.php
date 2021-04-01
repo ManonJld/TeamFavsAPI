@@ -29,13 +29,13 @@ class Bookmark
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"bookmarks_subresource", "bookmark_read"})
+     * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"bookmarks_subresource", "bookmark_read"})
+     * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
      * @Assert\NotBlank(
      *     message="Veuillez entrer un nom pour le favoris"
      * )
@@ -44,13 +44,13 @@ class Bookmark
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"bookmarks_subresource", "bookmark_read"})
+     * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"bookmarks_subresource", "bookmark_read"})
+     * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
      * @Assert\NotBlank(
      *     message="Veuillez entrer une URL"
      * )
@@ -62,13 +62,13 @@ class Bookmark
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Groups({"bookmarks_subresource", "bookmark_read"})
+     * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"bookmarks_subresource", "bookmark_read"})
+     * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
      */
     private $image;
 
@@ -84,7 +84,7 @@ class Bookmark
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookmarks")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"bookmarks_subresource", "bookmark_read"})
+     * @Groups({"bookmarks_subresource"})
      * @Assert\NotBlank(
      *     message="Veuillez renseigner un utilisateur"
      * )
