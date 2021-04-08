@@ -26,7 +26,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"userTeam_read", "bookmarks_subresource", "bookmark_read"})
+     * @Groups({"userTeam_read", "bookmarks_subresource", "bookmark_read", "teams_read"})
      */
     private $id;
 
