@@ -42,7 +42,7 @@ class PasswordEncoderSubscriber implements EventSubscriberInterface {
             $hash = $this->encoder->encodePassword($newUser, $newUser->getPassword());
             $newUser->setPassword($hash);
 //            affiche les données envoyée dans postman
-            dd($newUser);
+//            dd($newUser);
         }
     }
 }

@@ -75,6 +75,7 @@ class Bookmark
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="bookmarks")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"bookmarks_subresource", "bookmark_read"})
      * @Assert\NotBlank(
      *     message="Veuillez renseigner une catégorie"
      * )

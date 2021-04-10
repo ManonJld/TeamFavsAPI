@@ -26,7 +26,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"userTeam_read", "bookmarks_subresource", "bookmark_read", "teams_read"})
+     * @Groups({"userTeam_read", "bookmarks_subresource", "bookmark_read", "teams_read", "users_read"})
      */
     private $id;
 
@@ -144,7 +144,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = "ROLE_USER";
 
         return array_unique($roles);
     }

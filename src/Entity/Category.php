@@ -32,13 +32,13 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"categories_subresource"})
+     * @Groups({"categories_subresource", "bookmark_read", "bookmarks_subresource"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"category_read", "categories_subresource"})
+     * @Groups({"category_read", "categories_subresource", "bookmark_read", "bookmarks_subresource"})
      * @Assert\NotBlank(
      *     message="Veuillez entrer un nom pour la catégorie"
      * )

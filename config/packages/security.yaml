@@ -61,4 +61,4 @@ security:
         - { path: ^/api/role_user_teams, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/teams, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/user_teams, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/api/user, roles: IS_AUTHENTICATED_FULLY, methods: [GET, PUT, DELETE, PATCH] }
+        - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY, methods: [GET, PUT, DELETE, PATCH] }
