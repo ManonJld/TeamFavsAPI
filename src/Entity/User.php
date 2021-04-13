@@ -60,6 +60,13 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read"})
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 40,
+     *      minMessage = "Votre prénom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prénom ne peut pas faire plus de {{ limit }} caractères"
+     * )
+     *
      * @Assert\NotBlank(
      *     message="Veuillez entrez votre prénom"
      * )
@@ -69,6 +76,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read"})
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 40,
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas faire plus de {{ limit }} caractères"
+     * )
      * @Assert\NotBlank(
      *     message="Veuillez entre votre nom de famille"
      * )

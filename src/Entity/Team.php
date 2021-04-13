@@ -42,6 +42,12 @@ class Team
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"users_read", "teams_read", "userTeam_read"})
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 40,
+     *      minMessage = "Le nom de votre team doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de votre team ne peut pas faire plus de {{ limit }} caractères"
+     * )
      * @Assert\NotBlank(
      *     message = "Veuillez donner un nom à votre Team"
      * )

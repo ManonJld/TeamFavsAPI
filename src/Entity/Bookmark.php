@@ -36,6 +36,12 @@ class Bookmark
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 40,
+     *      minMessage = "Le nom de votre team doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de votre team ne peut pas faire plus de {{ limit }} caractères"
+     * )
      * @Assert\NotBlank(
      *     message="Veuillez entrer un nom pour le favoris"
      * )
@@ -62,6 +68,15 @@ class Bookmark
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 500,
+     *      minMessage = "La description du favori doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "La description du favori est limitée à {{ limit }} caractères"
+     * )
+     * @Assert\Regex(
+     *      pattern="/^\w+/",
+     *      message="Cette description n'est pas valide")
      * @Groups({"bookmarks_subresource", "bookmark_read", "teams_read"})
      */
     private $description;
@@ -86,9 +101,6 @@ class Bookmark
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookmarks")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"bookmarks_subresource", "bookmark_read"})
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner un utilisateur"
-     * )
      */
     private $user;
 

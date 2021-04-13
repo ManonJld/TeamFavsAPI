@@ -39,6 +39,12 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"category_read", "categories_subresource", "bookmark_read", "bookmarks_subresource"})
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 40,
+     *      minMessage = "Le nom de votre team doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de votre team ne peut pas faire plus de {{ limit }} caractères"
+     * )
      * @Assert\NotBlank(
      *     message="Veuillez entrer un nom pour la catégorie"
      * )
@@ -54,6 +60,13 @@ class Category
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"category_read", "categories_subresource"})
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 500,
+     *      minMessage = "La description de la catégorie doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "La description de la catégorie est limitée à {{ limit }} caractères"
+     * )
+     * @Assert\Regex("/^\w+/")
      */
     private $description;
 

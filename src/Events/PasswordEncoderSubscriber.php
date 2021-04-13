@@ -14,7 +14,7 @@ class PasswordEncoderSubscriber implements EventSubscriberInterface {
     /**
      * @var UserPasswordEncoderInterface
      */
-    private UserPasswordEncoderInterface $encoder;
+    private $encoder;
 
 //    cette fonction permet d'appeler et d'utiliser l'encoder de password de symfony
     public function __construct(UserPasswordEncoderInterface $encoder)
