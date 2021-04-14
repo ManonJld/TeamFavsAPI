@@ -3,7 +3,6 @@
 namespace App\Doctrine;
 
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use App\Entity\Team;
 use App\Entity\User;
@@ -12,7 +11,7 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Security;
 
 //Class qui permet de récupérer le user actuellement connecté, et lorsqu'on fera un fetch des Team, seule les teams auxquelles appartient le user s'afficheront
-class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
+class CurrentUserExtension implements QueryCollectionExtensionInterface
 {
 
     private $security;
@@ -41,11 +40,5 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface, QueryIt
             ->where('user = :user') // WHERE user = $user
             ->setParameter('user', $user);
         }
-    }
-
-    //Je n'utilise pas cette fonction sinon ça bug
-    public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, string $operationName = null, array $context = [])
-    {
-
     }
 }
