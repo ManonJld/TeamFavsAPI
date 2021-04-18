@@ -71,13 +71,13 @@ class Team
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserTeam::class, mappedBy="team", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=UserTeam::class, mappedBy="team", orphanRemoval=true, cascade={"remove"})
      * @Groups({"teams_read"})
      */
     private $userTeams;
 
     /**
-     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="team", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Category::class, mappedBy="team", orphanRemoval=true, cascade={"remove"})
      * @ApiSubresource(maxDepth=2)
      * @Groups("teams_read")
      */

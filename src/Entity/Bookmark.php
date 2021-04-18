@@ -68,12 +68,6 @@ class Bookmark
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(
-     *      min = 3,
-     *      max = 500,
-     *      minMessage = "La description du favori doit contenir au moins {{ limit }} caractères",
-     *      maxMessage = "La description du favori est limitée à {{ limit }} caractères"
-     * )
      * @Assert\Regex(
      *      pattern="/^\w+/",
      *      message="Cette description n'est pas valide")
@@ -88,7 +82,7 @@ class Bookmark
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="bookmarks")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="bookmarks", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"bookmarks_subresource", "bookmark_read"})
      * @Assert\NotBlank(

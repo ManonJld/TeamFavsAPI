@@ -100,7 +100,7 @@ class User implements UserInterface
     private $teamsCreated;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserTeam::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=UserTeam::class, mappedBy="user", orphanRemoval=true, cascade={"remove"})
      * @Groups({"users_read"})
      */
     private $userTeams;

@@ -71,7 +71,7 @@ class Category
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="categories")
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="categories", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(
      *     message="Veuillez renseigner une team"
@@ -90,7 +90,7 @@ class Category
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Bookmark::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Bookmark::class, mappedBy="category", cascade={"remove"})
      * @ApiSubresource(maxDepth=1)
      * @Groups("teams_read")
      */

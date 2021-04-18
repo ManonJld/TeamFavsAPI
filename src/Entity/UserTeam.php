@@ -31,7 +31,7 @@ class UserTeam
     private $team;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userTeams")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userTeams", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"teams_read", "userTeam_read"})
      */
