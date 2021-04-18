@@ -24,7 +24,6 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
     }
 
 
-
     public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
     {
         //Obtenir l'utilisateur connecté
