@@ -110,7 +110,7 @@ class Bookmark
 
     public function setName(string $name): self
     {
-        $this->name = $name;
+        $this->name = ucfirst($name);
 
         return $this;
     }

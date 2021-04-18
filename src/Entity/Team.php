@@ -91,7 +91,8 @@ class Team
         $this->categories = new ArrayCollection();
     }
 
-    //Cette fonction permet de pouvoir créer une entité UserTeam, à la création d'une entité Team. Il faut en plus cascade persist dans l'entité UserTeam
+    //Cette fonction permet de pouvoir créer une entité UserTeam, à la création d'une entité Team.
+    // Il faut en plus cascade persist dans l'entité UserTeam
     public function userTeam()
     {
         $newUserTeam = new UserTeam();
@@ -111,7 +112,7 @@ class Team
 
     public function setName(string $name): self
     {
-        $this->name = $name;
+        $this->name = ucfirst($name);
 
         return $this;
     }
