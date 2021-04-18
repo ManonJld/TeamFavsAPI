@@ -10,5 +10,6 @@ class UserGetTeamsController
     public function __invoke(UserTeam $data)
     {
         dd($data);
+
     }
 }
