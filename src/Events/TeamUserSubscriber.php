@@ -41,7 +41,7 @@ class TeamUserSubscriber implements EventSubscriberInterface
         {
             //récupère l'utilisateur actuellement connecté
             $user = $this->security->getUser();
-            //assigne l'utilisateur à la catégorie qu'on est en train de créer
+            //assigne l'utilisateur à la team qu'on est en train de créer
             $team->setUser($user);
 
             //récupère le role admin
@@ -57,7 +57,5 @@ class TeamUserSubscriber implements EventSubscriberInterface
             $manager->persist($userTeam);
             $manager->flush();
         }
-
-
     }
 }

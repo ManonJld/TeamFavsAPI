@@ -32,7 +32,7 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"categories_subresource", "bookmark_read", "bookmarks_subresource"})
+     * @Groups({"categories_subresource", "bookmark_read", "bookmarks_subresource", "category_read"})
      */
     private $id;
 
